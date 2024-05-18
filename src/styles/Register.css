@@ -1,0 +1,13 @@
+.container {
+  padding:3em 2em 3em 2em;
+    grid-gap: 1em;
+    margin-top: 40px;
+    margin: auto;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+.form {
+  background: #fff;
+  max-width: 400px;
+  margin: 0 auto;
+}
