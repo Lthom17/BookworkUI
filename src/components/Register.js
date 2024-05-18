@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import M from "materialize-css";
 import "../styles/Register.css";
 import "../styles/Login.css";
 import { registerMember } from "../api/RegisterApi.js";
@@ -63,7 +62,7 @@ export default function Register() {
 
         if (response.status === 201) {
             console.log("success")
-            M.toast({ html: 'Account Created, you may now login!', classes: 'rounded' });
+            // M.toast({ html: 'Account Created, you may now login!', classes: 'rounded' });
             history.push("/login");
         } else if (response.status === 400) {
             const errors = await response.json();
@@ -87,48 +86,73 @@ export default function Register() {
                       spacing={3}
                       direction="column"
                       justifyContent="space-around"
-                    alignItems="center"
+                      alignItems="center"
                     sx={{
                         border: '1px solid #000',
                         borderRadius: 15,
+                        paddingTop: 5
+                
                     }}
                 
                 >
-                        <Grid item xs={6}>
+                    <Grid item xs={12}
+                    sx={{border: 'none'}}>
                             <TextField
-                                required
+                            required
+                            fullWidth
                             label="Username"
                             {...register("userName")}
+                            sx={{
+                                width: 350,
+                                "& fieldset": { border: 'none'},
+    }}
                             />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12}>
                             <TextField
                                 required
                             label="Email"
+                            fullWidth
                             {...register("email")}
+                            sx={{
+                                width: 350,
+                                "& fieldset": { border: 'none'},
+    }}
                             />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12}>
                             <TextField
                                 required
                             label="First Name"
                             {...register("firstName")}
+                            sx={{
+                                width: 350,
+                                "& fieldset": { border: 'none'},
+    }}
                             />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12}>
                             <TextField
                                 required
                             label="Last Name"
                             {...register("lastName")}
+                            sx={{
+                                width: 350,
+                                "& fieldset": { border: 'none'},
+    }}
                             />
                     </Grid>
-                     <Grid item xs={6}>
+                     <Grid item xs={12}>
                             <TextField
                             required
                             label="Password"
                             type={showPassword ? "text" : "password"}
                             onChange={handlePasswordChange("password")}
                             {...register("password")}
+                            sx={{
+                                width: 350,
+                                "& fieldset": { border: 'none'},
+    }}
                             InputProps={{
                                 endAdornment:
                                     <InputAdornment position="end">
@@ -150,7 +174,7 @@ export default function Register() {
                         sx={{
                             backgroundColor: '#ffb74d',
                             color: 'black',
-                            marginTop: 10
+                            margin: 10
                         }}>Submit</Button>
                     </Grid>    
             </form>
