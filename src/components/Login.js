@@ -1,4 +1,4 @@
-import { TextField, Box } from "@mui/material";
+import { TextField, Grid, Typography } from "@mui/material";
 import { useAuth } from "../components/Context/UserContext";
 import "../styles/Login.css";
 import { useState } from "react";
@@ -19,49 +19,62 @@ function Login() {
   }
 
   return (
-    <>
-      <div className="page-label container">
-        <h2 className="center-align">Login</h2>
-      </div>
-
+    <div className="container">
       <form className="login-form" onSubmit={handleLoginSubmit}>
-        <Box sx={{ p: 2 }}>
-          <TextField
-            fullWidth
-            label="Username"
-            required
-            value={userName}
-            error={""}
-            onChange={(e) => setUsername(e.target.value)}
-            InputProps={{
-              style: { backgroundColor: "white", marginBottom: "15px" },
-            }}
-          />
+        <Grid
+          container
+          spacing={3}
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            margin: 0,
+          }}
+        >
+          <Typography variant="h2">Login</Typography>
 
-          <TextField
-            fullWidth
-            label="Password"
-            required
-            value={password}
-            error={""}
-            onChange={(e) => setPassword(e.target.value)}
-            InputProps={{
-              style: {
-                backgroundColor: "white",
-                marginBottom: "15px",
-                borderBottom: "none",
-                padding: "10px",
-              },
-            }}
-          />
-        </Box>
-        <div className="row">
-          <button type="submit" className="btn submit right">
-            Submit
-          </button>
-        </div>
+          <Grid item xs={12} sx={{ border: "none" }}>
+            <TextField
+              fullWidth
+              label="Username"
+              required
+              value={userName}
+              error={""}
+              onChange={(e) => setUsername(e.target.value)}
+              sx={{
+                width: 300,
+                paddingLeft: 0,
+                paddingRight: 2,
+                marginBottom: 5,
+                "& fieldset": { border: "none" },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} sx={{ border: "none" }}>
+            <TextField
+              fullWidth
+              label="Password"
+              required
+              value={password}
+              error={""}
+              onChange={(e) => setPassword(e.target.value)}
+              sx={{
+                width: 300,
+                paddingLeft: 0,
+                paddingRight: 2,
+                marginBottom: 15,
+                "& fieldset": { border: "none" },
+              }}
+            />
+          </Grid>
+          <div>
+            <button type="submit" className="submit">
+              Submit
+            </button>
+          </div>
+        </Grid>
       </form>
-    </>
+    </div>
   );
 }
 

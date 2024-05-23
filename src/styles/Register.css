@@ -1,12 +1,25 @@
-.container {
-    grid-gap: 1em;
-    margin-top: 40px;
-    margin: auto;
-    border-radius: 10px;
-    border: 2px solid black;
-}
+
 .form {
+  margin-top: 25px;
+  margin-bottom: 25px;
   background: #fff;
   max-width: 400px;
   margin: 0 auto;
+  border:5px solid #85bdbf;
+  border-radius: 15px;
+
+}
+.header {
+  display: flex;
+  justify-content: center;
+
+}
+
+.header h2 {
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.bookContainer {
+  margin-top: 30px;
 }
