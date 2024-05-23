@@ -31,7 +31,12 @@ function Login() {
             margin: 0,
           }}
         >
-          <Typography variant="h2">Login</Typography>
+          <Typography
+            variant="h2"
+            align="center"
+          >
+            Login
+          </Typography>
 
           <Grid item xs={12} sx={{ border: "none" }}>
             <TextField
