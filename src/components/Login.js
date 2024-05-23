@@ -32,8 +32,9 @@ function Login() {
           }}
         >
           <Typography
-            variant="h2"
+            variant="h3"
             align="center"
+
           >
             Login
           </Typography>
