@@ -178,15 +178,12 @@ export default function Register() {
           </Grid>
           <Button
             type="submit"
-
             sx={{
-              margin: '20px 0',
+              margin: "20px 0",
               width: 100,
               height: 46,
               backgroundColor: "#ffb74d",
               color: "black",
-              //marginLeft: 5,
-
               "&:hover": {
                 backgroundColor: "#c9fbff",
               },
