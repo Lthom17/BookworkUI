@@ -1,8 +1,14 @@
-.container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.formContainer {
+    margin: 0 auto;
+    margin-top: 25px;
+    height: 'auto';
+    width: 400px;
+    background-color: '#fff';
+    border: 5px solid #85bdbf;
+    border-radius: 15px;
+    padding: 20px;
 }
+
 
 .page-label {
     margin-top: 50px;
@@ -10,15 +16,12 @@
 }
 
 .login-form {
-    margin-top: 25px;
-    background-color: #fff;
-    border: 5px solid #85bdbf;
-    border-radius: 15px;
-    padding: 20px;
+    margin-top: 10px;
+    margin-left: -25px;
 }
 
+
 .submit {
-    float: right;
     background-color: #ffb74d;
     color: '#000';
     border: none;
@@ -29,5 +32,5 @@
 }
 
 .submit:hover {
-    background-color: #ffb74d;
+    background-color: #85bdbf;
 }

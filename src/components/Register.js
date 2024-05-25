@@ -84,7 +84,7 @@ export default function Register() {
         </div>
         <Grid
           container
-          spacing={3}
+          spacing={0}
           direction="column"
           justifyContent="center"
           alignItems="center"
@@ -92,16 +92,15 @@ export default function Register() {
             margin: 0,
           }}
         >
-          <Grid item xs={12} sx={{ border: "none" }}>
+          <Grid item xs={12}>
             <TextField
               required
               fullWidth
               label="Username"
               {...register("userName")}
               sx={{
-                width: 350,
-                paddingLeft: 0,
-                paddingRight: 2,
+                marginTop: 2,
+                width: 300,
                 "& fieldset": { border: "none" },
                 "& input": { color: "#000" },
               }}
@@ -114,9 +113,8 @@ export default function Register() {
               fullWidth
               {...register("email")}
               sx={{
-                paddingLeft: 0,
-                paddingRight: 2,
-                width: 350,
+                marginTop: 2,
+                width: 300,
                 "& fieldset": { border: "none" },
               }}
             />
@@ -127,9 +125,8 @@ export default function Register() {
               label="First Name"
               {...register("firstName")}
               sx={{
-                paddingLeft: 0,
-                paddingRight: 2,
-                width: 350,
+                marginTop: 2,
+                width: 300,
                 "& fieldset": { border: "none" },
               }}
             />
@@ -140,9 +137,8 @@ export default function Register() {
               label="Last Name"
               {...register("lastName")}
               sx={{
-                paddingLeft: 0,
-                paddingRight: 2,
-                width: 350,
+                marginTop: 2,
+                width: 300,
                 "& fieldset": { border: "none" },
               }}
             />
@@ -155,14 +151,16 @@ export default function Register() {
               onChange={handlePasswordChange("password")}
               {...register("password")}
               sx={{
-                paddingLeft: 0,
-                paddingRight: 2,
-                width: 350,
+                marginTop: 2,
+                width: 300,
                 "& fieldset": { border: "none" },
               }}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position="end" sx={{textDecoration: 'underline'}}>
+                  <InputAdornment
+                    position="end"
+                    sx={{ textDecoration: "underline" }}
+                  >
                     <IconButton
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
@@ -187,7 +185,7 @@ export default function Register() {
               backgroundColor: "#ffb74d",
               color: "black",
               marginLeft: 5,
-        
+
               "&:hover": {
                 backgroundColor: "#c9fbff",
               },

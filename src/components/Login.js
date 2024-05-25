@@ -2,28 +2,61 @@ import { TextField, Grid, Typography } from "@mui/material";
 import { useAuth } from "../components/Context/UserContext";
 import "../styles/Login.css";
 import { useState } from "react";
+import { IconButton, InputAdornment } from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility.js";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff.js";
+import { useForm } from "react-hook-form";
 
 function Login() {
-  const [userName, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [values, setValues] = useState({
+    password: "",
+  });
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      userName: "",
+      password: "",
+    },
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values });
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const handlePasswordChange = (prop) => (event) => {
+    console.log(event.target.value);
+    setValues({ ...values });
+    setShowPassword(false);
+  
+  };
+
   // TODO: VALIDATION
-  // const [userNameError, setUsernameError] = useState('');
-  // const [passwordError, setPasswordError] = useState('');
 
   const { handleLogin } = useAuth();
 
-  function handleLoginSubmit(e) {
-    e.preventDefault();
-
-    handleLogin(userName, password);
+  function handleLoginSubmit(values) {
+    handleLogin(values.userName, values.password);
+    reset();
   }
 
   return (
-    <div className="container">
-      <form className="login-form" onSubmit={handleLoginSubmit}>
+    <div className="formContainer">
+      <form className="login-form" onSubmit={handleSubmit(handleLoginSubmit)}>
         <Grid
           container
-          spacing={3}
+          spacing={0}
           direction="column"
           justifyContent="center"
           alignItems="center"
@@ -31,53 +64,62 @@ function Login() {
             margin: 0,
           }}
         >
-          <Typography
-            variant="h3"
-            align="center"
-
-          >
-            Login
-          </Typography>
+          <Grid item sx={{ alignItems: "center" }}>
+            <Typography variant="h3">Login</Typography>
+          </Grid>
 
           <Grid item xs={12} sx={{ border: "none" }}>
             <TextField
               fullWidth
               label="Username"
               required
-              value={userName}
-              error={""}
-              onChange={(e) => setUsername(e.target.value)}
+              {...register("userName")}
+              //error={""}
               sx={{
                 width: 300,
-                paddingLeft: 0,
                 paddingRight: 2,
-                marginBottom: 5,
+                margin: 5,
                 "& fieldset": { border: "none" },
               }}
             />
           </Grid>
-          <Grid item xs={12} sx={{ border: "none" }}>
+          <Grid item xs={12} sx={{ border: "none", paddingLeft: 0 }}>
             <TextField
               fullWidth
               label="Password"
               required
-              value={password}
-              error={""}
-              onChange={(e) => setPassword(e.target.value)}
+             // error={""}
+              type={showPassword ? "text" : "password"}
+              onChange={handlePasswordChange("password")}
+              {...register("password")}
               sx={{
                 width: 300,
-                paddingLeft: 0,
-                paddingRight: 2,
                 marginBottom: 15,
                 "& fieldset": { border: "none" },
               }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {values.showPassword ? (
+                        <Visibility sx={{ textDecoration: "underline" }} />
+                      ) : (
+                        <VisibilityOffIcon />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
           </Grid>
-          <div>
+          <Grid sx={{ marginTop: -10 }}>
             <button type="submit" className="submit">
               Submit
             </button>
-          </div>
+          </Grid>
         </Grid>
       </form>
     </div>
