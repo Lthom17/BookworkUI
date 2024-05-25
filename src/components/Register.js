@@ -3,23 +3,11 @@ import { useLocation } from "react-router-dom";
 import "../styles/Register.css";
 import "../styles/Login.css";
 import { registerMember } from "../api/RegisterApi.js";
-import { TextField, Grid, Button, styled } from "@mui/material";
+import { TextField, Grid, Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { IconButton, InputAdornment } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility.js";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff.js";
-
-const options = {
-  shouldForwardProp: (prop) => prop !== "fontColor",
-};
-const StyledTextField = styled(
-  TextField,
-  options
-)(({ fontColor }) => ({
-  input: {
-    color: fontColor,
-  },
-}));
 
 export default function Register() {
   const {
@@ -179,13 +167,13 @@ export default function Register() {
           <Button
             type="submit"
             sx={{
-              margin: "20px 0",
-              width: 100,
-              height: 46,
+              margin: "40px 0",
+              width: 80,
+              height: 40,
               backgroundColor: "#ffb74d",
               color: "black",
               "&:hover": {
-                backgroundColor: "#c9fbff",
+                backgroundColor: "#85bdbf",
               },
             }}
           >
