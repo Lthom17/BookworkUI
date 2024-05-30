@@ -6,9 +6,10 @@ import { IconButton, InputAdornment } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility.js";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff.js";
 import { useForm } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { schema } from "../validation/formValidation.js";
 
 function Login() {
-
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState({
     password: "",
@@ -20,6 +21,7 @@ function Login() {
     reset,
     formState: { errors },
   } = useForm({
+    resolver: joiResolver(schema),
     defaultValues: {
       userName: "",
       password: "",
@@ -36,13 +38,9 @@ function Login() {
   };
 
   const handlePasswordChange = (prop) => (event) => {
-    console.log(event.target.value);
     setValues({ ...values });
     setShowPassword(false);
-  
   };
-
-  // TODO: VALIDATION
 
   const { handleLogin } = useAuth();
 
@@ -56,7 +54,7 @@ function Login() {
       <form className="login-form" onSubmit={handleSubmit(handleLoginSubmit)}>
         <Grid
           container
-          spacing={0}
+          spacing={2}
           direction="column"
           justifyContent="center"
           alignItems="center"
@@ -68,33 +66,41 @@ function Login() {
             <Typography variant="h3">Login</Typography>
           </Grid>
 
-          <Grid item xs={12} sx={{ border: "none" }}>
+          <Grid item xs={12} sx={{ border: "none", margin: 0 }}>
             <TextField
               fullWidth
               label="Username"
               required
               {...register("userName")}
-              //error={""}
               sx={{
                 width: 300,
-                paddingRight: 2,
-                margin: 5,
+
                 "& fieldset": { border: "none" },
               }}
             />
+            {errors?.userName && (
+              <p
+                style={{
+                  fontSize: 10,
+                  margin: "0 auto",
+                  color: "#d32f2f",
+                }}
+              >
+                {errors?.userName?.message}
+              </p>
+            )}
           </Grid>
-          <Grid item xs={12} sx={{ border: "none", paddingLeft: 0 }}>
+          <Grid item xs={12} sx={{ border: "none", margin: 0 }}>
             <TextField
               fullWidth
               label="Password"
               required
-             // error={""}
+              // error={""}
               type={showPassword ? "text" : "password"}
               onChange={handlePasswordChange("password")}
               {...register("password")}
               sx={{
                 width: 300,
-                marginBottom: 15,
                 "& fieldset": { border: "none" },
               }}
               InputProps={{
@@ -114,8 +120,13 @@ function Login() {
                 ),
               }}
             />
+            {errors?.password && (
+              <p style={{ fontSize: 10, color: "#d32f2f" }}>
+                {errors?.password?.message}
+              </p>
+            )}
           </Grid>
-          <Grid sx={{ marginTop: -10 }}>
+          <Grid sx={{ marginTop: 10 }}>
             <button type="submit" className="submit">
               Submit
             </button>
