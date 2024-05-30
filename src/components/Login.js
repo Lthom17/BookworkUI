@@ -60,6 +60,7 @@ function Login() {
           alignItems="center"
           sx={{
             margin: 0,
+            width: 300,
           }}
         >
           <Grid item sx={{ alignItems: "center" }}>
@@ -82,8 +83,8 @@ function Login() {
               <p
                 style={{
                   fontSize: 10,
-                  margin: "0 auto",
                   color: "#d32f2f",
+          
                 }}
               >
                 {errors?.userName?.message}
@@ -121,7 +122,7 @@ function Login() {
               }}
             />
             {errors?.password && (
-              <p style={{ fontSize: 10, color: "#d32f2f" }}>
+              <p style={{ fontSize: 10, color: "#d32f2f"}}>
                 {errors?.password?.message}
               </p>
             )}

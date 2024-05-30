@@ -8,8 +8,7 @@ export const schema = Joi.object().keys({
     .alphanum()
     .required()
     .error((errors) => {
-        errors.forEach((err) => {
-        console.log('error', err.code)
+      errors.forEach((err) => {
         switch (err.code) {
           case "any.empty":
             err.message = "Value should not be empty!";
@@ -33,18 +32,33 @@ export const schema = Joi.object().keys({
     .email({ tlds: { allow: false } }),
   password: Joi.string()
     .trim()
+    .min(8)
+    .max(25)
     .regex(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/,
       "password"
     )
-    .min(8)
-    .max(25)
     .required()
-    .messages({
-      "string.base": `"" should be a type of string`,
-      "string.empty": `"" must contain value`,
-      "string.pattern.base": `"" must be 10 digit number`,
-      "any.required":
-        "Password must be 8-12 characters long and include a-z, 0-9, and at least one (@$!%*?&).) ",
+    .error((errors) => {
+      errors.forEach((err) => {
+        switch (err.code) {
+          case "any.empty":
+            err.message = "Value should not be empty!";
+            break;
+          case "string.min":
+            err.message = `Value should have at least 8 characters!`;
+            break;
+          case "string.max":
+            err.message = `Value should have at most 12 characters!`;
+            break;
+          case "string.pattern.name":
+            err.message =
+              "Password must be 8-12 characters long and include a-z, 0-9, and at least one (@$!%*?&).)";
+            break;
+          default:
+            break;
+        }
+      });
+      return errors;
     }),
 });
